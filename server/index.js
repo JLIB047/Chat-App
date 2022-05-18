@@ -28,12 +28,12 @@ app.post('/', (req, res) => {
     const {message, user: sender, type, members } = req.body;
 
     if(type === "message.new") {
-        members.
-            filter((member) => member.user_id !== sender.id)
-            forEach(({ user }) => {
+        members
+            .filter((member) => member.user_id !== sender.id)
+            .forEach(({ user }) => {
             if(!user.online) {
                 twilioClient.messages.create({
-                    bode: `You have a new Message from ${message.user.fullName} - ${message.text}`,
+                    body: `You have a new Message from ${message.user.fullName} - ${message.text}`,
                     messagingServiceSid: messagingServiceSid,
                     to: user.phoneNumber
                 })
