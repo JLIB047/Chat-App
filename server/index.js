@@ -50,5 +50,4 @@ app.post('/', (req, res) => {
 app.use('/auth', authRoutes);
 
 //run server on a specific Port 
-app.listen(PORT, () => {console.log(`Server running on port ${PORT}`)
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
