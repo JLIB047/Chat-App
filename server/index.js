@@ -10,10 +10,10 @@ const PORT = process.env.PORT || 3000;
 //allow to call environment variables 
 require('dotenv').config();
 
-//const accountSid = process.env.TWILIO_ACCOUNT_SID;
-//const authToken = process.env.TWILIO_AUTH_TOKEN;
-//const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID;
-const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID;
+const client = require('twilio')(accountSid, authToken);
 
 app.use(cors()); 
 //pass json from frontend to backend 
@@ -33,11 +33,11 @@ app.post('/', (req, res) => {
             .forEach(({ user }) => {
             if(!user.online) {
                 client.messages.create({
+                    to: user.phoneNumber,
                     body: `You have a new Message from ${message.user.fullName} - ${message.text}`,
                     messagingServiceSid: messagingServiceSid,
-                    to: user.phoneNumber
                 })
-                    .then(() => console.log('Message Sent!'))
+                    .then(message => console.log(message.sid))
                     .catch((err) => console.log(err))
             }
         })
