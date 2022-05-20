@@ -10,10 +10,10 @@ const PORT = process.env.PORT || 3000;
 //allow to call environment variables 
 require('dotenv').config();
 
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID;
-const client = require('twilio')(accountSid, authToken);
+//const accountSid = process.env.TWILIO_ACCOUNT_SID;
+//const authToken = process.env.TWILIO_AUTH_TOKEN;
+//const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID;
+const client = require('twilio')(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 app.use(cors()); 
 //pass json from frontend to backend 
